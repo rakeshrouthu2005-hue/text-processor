@@ -2,38 +2,65 @@
 
 A Python project that reads multiple text files in parallel and evaluates them using keyword matching and scoring rules.
 
-## 🚀 Features
-- Parallel processing of multiple text files
-- Keyword detection
-- Scoring system based on matches
-- Clean structured output
+## 🚀 Feature
+- Parallel processing using `ThreadPoolExecutor`
+- Keyword-based scoring system (positive & negative words)
+- Sentiment classification (Positive / Negative / Neutral)
+- SQLite database storage of results
+- Exception handling for file and database errors
+- Clean and structured console output
 
 ## 📂 Project Structure
-
+text-processor/
+│── data/
+│── output/          ← store exports here
+│── parallel_processor.py
+│── config.py        ← rules & keywords
+│── requirements.txt
+│── README.md
 
 ## ▶️ How to Run
 
-1. Make sure Python is installed.
-2. Place your text files inside the `data/` folder.
-3. Run the script:
+
+---
+
+## ▶️ How to Run
+
+### 1️⃣ Prerequisites
+- Python 3 installed
+
+### 2️⃣ Add your text files
+Place `.txt` files inside the `data/` folder or use `reviews.txt`.
+
+### 3️⃣ Run the script
+
+```bash
+python parallel_processor.py
 
 ```bash
 python parallel_processor.py
 
 ## 📌 Example Output
 
-The program processes multiple text files and identifies keywords with scores.
-
-```bash
-python parallel_processor.py
-
 Text: Support team is good and helpful.
-Matched Word: good
 Score: 1
+Sentiment: Positive
 ----------------------------------------
 
-Text: Good design but performance is not great.
-Matched Word: good
-Score: 1
+Text: The app is bad and slow.
+Score: -2
+Sentiment: Negative
 ----------------------------------------
+
+Text: Average experience, nothing special.
+Score: 0
+Sentiment: Neutral
+----------------------------------------
+
+## 📄 Dataset
+
+This project uses a small sample text dataset stored in the `data/` folder and `reviews.txt`.  
+The dataset contains example user reviews created for testing the sentiment scoring system.
+
+The text samples simulate real-world feedback such as product reviews, service experiences, and usability comments.
 
