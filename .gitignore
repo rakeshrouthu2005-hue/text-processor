@@ -1,2 +1,13 @@
-results.db
+# Databases
+*.db
+
+# Large generated datasets
+reviews_large.txt
+
+# Python cache
 __pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
