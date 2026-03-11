@@ -94,7 +94,7 @@ text-processor/
 ### Clone the repository
 
 ```
-git clone https://github.com/YOUR_USERNAME/text-processor.git
+git clone https://github.com/rakeshrouthu2005-hue/text-processor.git
 cd text-processor
 ```
 
