@@ -1,76 +1,181 @@
-# Parallel Text Processor
+# Parallel Text Processor with Sentiment Analysis
 
-A Python project that reads multiple text files in parallel and evaluates them using keyword matching and scoring rules.
+A Python application that processes large text datasets, performs sentiment analysis, and provides an interactive dashboard for exploring results.
 
-##  Feature
-- Parallel processing using `ThreadPoolExecutor`
-- Keyword-based scoring system (positive & negative words)
-- Sentiment classification (Positive / Negative / Neutral)
-- SQLite database storage of results
-- Exception handling for file and database errors
-- Clean and structured console output
-
-## 📂 Project Structure
-text-processor/
-│── data/
-│── output/          ← store exports here
-│── parallel_processor.py
-│── config.py        ← rules & keywords
-│── requirements.txt
-│── README.md
-
-
-
+The system uses **parallel processing**, **database storage**, and a **Streamlit web interface** to analyze text files efficiently.
 
 ---
 
-## ▶️ How to Run
+# Features
 
-### 1️⃣ Prerequisites
-- Python 3 installed
+### Parallel Text Processing
 
-### 2️⃣ Add your text files
-Place `.txt` files inside the `data/` folder or use `reviews.txt`.
+Uses `ThreadPoolExecutor` to process large numbers of text records efficiently.
 
-### 3️⃣ Run the script
+### Keyword-Based Sentiment Analysis
 
-```bash
-python parallel_processor.py
+Sentiment is calculated using rule-based keyword scoring:
 
-```bash
-python parallel_processor.py
+* Positive words increase score
+* Negative words decrease score
 
-##  Example Output
+Classification categories:
 
-Text: Support team is good and helpful.
-Score: 1
-Sentiment: Positive
-----------------------------------------
+* Positive
+* Negative
+* Neutral
 
-Text: The app is bad and slow.
-Score: -2
-Sentiment: Negative
-----------------------------------------
+### SQLite Database Storage
 
-Text: Average experience, nothing special.
-Score: 0
-Sentiment: Neutral
-----------------------------------------
+Processed results are stored in an **SQLite database** for efficient querying and analysis.
 
-## 📄 Dataset
+### Query Optimization
 
-This project uses a small sample text dataset stored in the `data/` folder and `reviews.txt`.  
-The dataset contains example user reviews created for testing the sentiment scoring system.
+Indexes are added to the database to improve query performance for large datasets.
 
-The text samples simulate real-world feedback such as product reviews, service experiences, and usability comments.
+### Interactive Streamlit UI
 
-### Performance Test
+The application provides a web interface where users can:
 
-Dataset size: 1,000,000 records
+* Upload text files
+* Process large datasets
+* View processed results
+* Analyze sentiment statistics
 
-| Stage | Query Time |
-|------|------|
+### Data Visualization
+
+The dashboard includes:
+
+* Sentiment summary
+* Bar chart visualization
+* Pie chart visualization
+
+### Export Options
+
+Users can:
+
+* Download results as a CSV file
+* Send analysis results via email
+
+---
+
+# Project Structure
+
+```
+text-processor/
+│
+├── data/
+│   ├── file1.txt
+│   ├── file2.txt
+│   ├── file3.txt
+│   ├── file4.txt
+│   └── file5.txt
+│
+├── pages/
+│   ├── results.py
+│   └── analysis.py
+│
+├── app.py
+├── processor.py
+├── db.py
+├── rules.py
+├── generate_data.py
+├── optimize_db.py
+├── query_test.py
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+# Installation
+
+### Clone the repository
+
+```
+git clone https://github.com/YOUR_USERNAME/text-processor.git
+cd text-processor
+```
+
+### Install dependencies
+
+```
+pip install streamlit pandas matplotlib
+```
+
+---
+
+# Running the Application
+
+Start the Streamlit application:
+
+```
+python -m streamlit run app.py
+```
+
+Then open your browser:
+
+```
+http://localhost:8501
+```
+
+---
+
+# Usage
+
+1. Upload a `.txt` file containing text data.
+2. The application processes the data and stores results in the database.
+3. Navigate to the **Results page** to view processed records.
+4. Open the **Analysis page** to see sentiment statistics and charts.
+5. Download results as CSV or send them via email.
+
+---
+
+# Dataset
+
+This project uses text datasets containing simulated product reviews and feedback.
+
+Example text samples include:
+
+* Product reviews
+* Service feedback
+* User experience comments
+
+These datasets are used to demonstrate large-scale text processing and sentiment analysis.
+
+---
+
+# Performance Test
+
+Dataset size: **1,000,000 records**
+
+| Stage           | Query Time     |
+| --------------- | -------------- |
 | Before Indexing | 0.0589 seconds |
 | After Indexing  | 0.0160 seconds |
 
-**Result:** Indexing improved query performance by ~72%.
+Result:
+
+**Database indexing improved query performance by ~72%.**
+
+---
+
+# Email Configuration
+
+Email credentials are stored using **environment variables** to avoid exposing sensitive information.
+
+Set them using:
+
+```
+setx EMAIL_USER "your_email@gmail.com"
+setx EMAIL_PASS "your_app_password"
+```
+
+Restart your terminal after setting these values.
+
+---
+
+# Author
+
+Rakesh Routhu
