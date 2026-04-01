@@ -1,6 +1,6 @@
 import sqlite3
 
-DB_NAME = "results_large.db"
+DB_NAME = "results.db"
 
 def init_db():
     conn = sqlite3.connect(DB_NAME)

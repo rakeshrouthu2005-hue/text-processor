@@ -1,17 +1,16 @@
 import streamlit as st
+import os
 
-st.title("📊 Text Processor")
+st.title(" Text Processor")
 
-st.write("Upload a text file to analyze sentiment.")
+uploaded_file = st.file_uploader("Upload a text file")
 
-uploaded_file = st.file_uploader("Upload a .txt file", type=["txt"])
-
-if uploaded_file is not None:
-
+if uploaded_file:
     with open("temp.txt", "wb") as f:
         f.write(uploaded_file.getbuffer())
 
     st.success("File uploaded successfully!")
 
     if st.button("Run Processing"):
-        st.switch_page("pages/results.py")
+        os.system("python main.py")
+        st.success("Processing Done! Check Results page.")

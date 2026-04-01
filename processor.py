@@ -1,20 +1,30 @@
+import os
+import sqlite3
+
+from db import DB_NAME, init_db
 from rules import calculate_score, get_sentiment
-from db import insert_batch
 
-def process_large_file(filename):
-    batch = []
-    batch_size = 5000
 
-    with open(filename) as f:
-        for line in f:
+def process_large_file(file_path):
+    init_db()
+
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        for line in file:
             text = line.strip()
+
+            if not text:
+                continue
+
             score = calculate_score(text)
             sentiment = get_sentiment(score)
-            batch.append((text, score, sentiment))
 
-            if len(batch) == batch_size:
-                insert_batch(batch)
-                batch.clear()
+            cursor.execute(
+                "INSERT INTO results (text, score, sentiment) VALUES (?, ?, ?)",
+                (text, score, sentiment)
+            )
 
-        if batch:
-            insert_batch(batch)
+    conn.commit()
+    conn.close()
